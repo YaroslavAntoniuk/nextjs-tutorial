@@ -19,15 +19,20 @@ const Drink = async ({ params }) => {
 
   if (!drink) {
     return (
-      <div className="flex items-center justify-center w-full h-2/6">
-        <p className="text-white">No drink found</p>
+      <div className="h-3/6">
+        <Link href="/drinks" className="btn btn-primary mb-8">
+          &#8592; Back to drinks
+        </Link>
+        <div className="flex items-center justify-center w-full h-2/6">
+          <p className="text-white">No drink found</p>
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <Link href="/drinks" className="btn btn-primary mb-8">
+      <Link href={`/drinks#${drink.idDrink}`} className="btn btn-primary mb-8">
         &#8592; Back to drinks
       </Link>
       <SingleDrink drink={drink} />
