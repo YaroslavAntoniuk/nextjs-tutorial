@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
             <Navbar />
           </div>
 
-          <main className="h-[70%] relative px-8 py-16 max-w-6xl mx-auto">
+          <main className="h-full relative px-8 py-8 max-w-6xl mx-auto">
             {children}
           </main>
         </div>
