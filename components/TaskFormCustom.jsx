@@ -1,8 +1,9 @@
 'use client';
 
 import { createTaskCustom } from '@/utils/actions';
-import { useRef } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useEffect } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
+import toast from 'react-hot-toast';
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -18,17 +19,22 @@ const SubmitButton = () => {
   );
 };
 
+const initialState = {
+  message: '',
+  error: false,
+};
+
 const TaskFormCustom = () => {
-  const formRef = useRef(null);
+  const [state, formAction] = useFormState(createTaskCustom, initialState);
+
+  useEffect(() => {
+    if (state.message) {
+      state.error ? toast.error(state.message) : toast.success(state.message);
+    }
+  }, [state]);
 
   return (
-    <form
-      ref={formRef}
-      action={async (formData) => {
-        await createTaskCustom(formData);
-        formRef.current?.reset();
-      }}
-    >
+    <form action={formAction}>
       <div className="flex flex-row w-full gap-4 my-8">
         <input
           className="input input-bordered bg-slate-50 text-black"
