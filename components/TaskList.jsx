@@ -25,7 +25,7 @@ const TaskList = async () => {
           </h2>
           <div className="flex gap-6 items-center">
             <Link
-              href={`/task/${task.id}`}
+              href={`/tasks/${task.id}`}
               className="btn btn-accent btn-xs px-4"
             >
               Edit
