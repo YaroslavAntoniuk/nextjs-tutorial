@@ -1,7 +1,7 @@
 'use client';
 
 import { createTaskCustom } from '@/utils/actions';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import toast from 'react-hot-toast';
 
@@ -26,15 +26,22 @@ const initialState = {
 
 const TaskFormCustom = () => {
   const [state, formAction] = useFormState(createTaskCustom, initialState);
+  const formRef = useRef(null);
 
   useEffect(() => {
     if (state.message) {
-      state.error ? toast.error(state.message) : toast.success(state.message);
+      if (state.error) {
+        toast.error(state.message);
+        return;
+      }
+
+      toast.success(state.message);
+      formRef.current?.reset();
     }
   }, [state]);
 
   return (
-    <form action={formAction}>
+    <form ref={formRef} action={formAction}>
       <div className="flex flex-row w-full gap-4 my-8">
         <input
           className="input input-bordered bg-slate-50 text-black"
