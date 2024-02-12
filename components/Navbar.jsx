@@ -5,7 +5,7 @@ const links = [
   { title: 'Client', path: '/client' },
   { title: 'Drinks', path: '/drinks' },
   { title: 'Tasks', path: '/tasks' },
-  { title: 'Query', path: '/query' },
+  { title: 'Prisma', path: '/prisma' },
 ];
 
 function Navbar() {
