@@ -75,6 +75,7 @@ export const updateTask = async (formData) => {
     },
   });
 
+  revalidatePath('/tasks');
   redirect('/tasks');
 };
 
