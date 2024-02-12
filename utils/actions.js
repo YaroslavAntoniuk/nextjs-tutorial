@@ -34,6 +34,22 @@ export const createTask = async (formData) => {
   }
 };
 
+export const createTaskCustom = async (formData) => {
+  try {
+    const content = formData.get('content');
+
+    await prisma.task.create({
+      data: {
+        content,
+      },
+    });
+
+    revalidatePath('/tasks');
+  } catch (error) {
+    throw new Error('Something went wrong while creating a task');
+  }
+};
+
 export const updateTask = async (formData) => {
   const id = formData.get('id');
   const content = formData.get('content');
