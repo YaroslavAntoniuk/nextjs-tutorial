@@ -1,7 +1,11 @@
+import TaskForm from '@/components/TaskForm';
+import TaskList from '@/components/TaskList';
+
 const Tasks = () => {
   return (
     <div>
-      <h1 className="text-7xl">Tasks</h1>
+      <TaskForm />
+      <TaskList />
     </div>
   );
 };
